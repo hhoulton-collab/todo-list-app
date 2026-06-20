@@ -1,4 +1,4 @@
-import { html } from 'htm/react';
+import { html } from '../html.js';
 import { useState, useRef } from 'react';
 import { TodoCard } from './TodoCard.js';
 

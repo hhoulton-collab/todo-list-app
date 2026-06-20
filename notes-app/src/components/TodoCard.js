@@ -1,4 +1,4 @@
-import { html } from 'htm/react';
+import { html } from '../html.js';
 import { useState, useEffect } from 'react';
 
 const CARD_STYLES = `

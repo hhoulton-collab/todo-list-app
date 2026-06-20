@@ -1,4 +1,4 @@
-import { html } from 'htm/react';
+import { html } from '../html.js';
 import { useEffect, useRef } from 'react';
 import { ACTIONS } from '../store.js';
 

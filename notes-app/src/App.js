@@ -1,4 +1,4 @@
-import { html } from 'htm/react';
+import { html } from './html.js';
 import { useState, useReducer, useEffect, useRef, useCallback } from 'react';
 import { reducer, initialState, ACTIONS } from './store.js';
 import { saveState, loadState } from './utils/storage.js';

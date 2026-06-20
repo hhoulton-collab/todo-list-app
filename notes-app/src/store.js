@@ -34,7 +34,7 @@ export function reducer(state, action) {
     case ACTIONS.CREATE_NOTE: {
       const now = new Date().toISOString();
       const note = {
-        id: Date.now(),
+        id: (action.payload && action.payload.id) ? action.payload.id : Date.now(),
         title: 'Untitled Note',
         content: '',
         contentText: '',

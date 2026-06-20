@@ -1,4 +1,4 @@
-import { html } from 'htm/react';
+import { html } from '../html.js';
 import ActionItem from './ActionItem.js';
 
 const ACTIONS = {

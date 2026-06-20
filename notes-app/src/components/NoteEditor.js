@@ -1,4 +1,4 @@
-import { html } from 'htm/react';
+import { html } from '../html.js';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { ACTIONS } from '../store.js';
 import FormattingToolbar from './FormattingToolbar.js';
