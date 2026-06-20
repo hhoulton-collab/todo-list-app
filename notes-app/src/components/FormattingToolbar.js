@@ -77,7 +77,6 @@ export default function FormattingToolbar({ editorRef }) {
   return html`
     <div style=${{ position: 'relative' }} ref=${pickerAnchorRef}>
       <div class="toolbar-pill">
-        <!-- Text style -->
         <button class="toolbar-btn" onClick=${() => exec('bold')} title="Bold"><b>B</b></button>
         <button class="toolbar-btn" onClick=${() => exec('italic')} title="Italic"><i>I</i></button>
         <button class="toolbar-btn" onClick=${() => exec('underline')} title="Underline" style=${{ textDecoration: 'underline' }}>U</button>
@@ -85,7 +84,6 @@ export default function FormattingToolbar({ editorRef }) {
 
         <div class="toolbar-separator"></div>
 
-        <!-- Font size -->
         <button class="toolbar-btn" onClick=${() => exec('fontSize', '2')} title="Small" style=${{ fontSize: '0.7rem' }}>S</button>
         <button class="toolbar-btn" onClick=${() => exec('fontSize', '3')} title="Normal">N</button>
         <button class="toolbar-btn" onClick=${() => exec('fontSize', '4')} title="Large" style=${{ fontSize: '1rem' }}>L</button>
@@ -93,30 +91,25 @@ export default function FormattingToolbar({ editorRef }) {
 
         <div class="toolbar-separator"></div>
 
-        <!-- Headings -->
         <button class="toolbar-btn" onClick=${() => exec('formatBlock', 'h1')} title="Heading 1">H1</button>
         <button class="toolbar-btn" onClick=${() => exec('formatBlock', 'h2')} title="Heading 2">H2</button>
         <button class="toolbar-btn" onClick=${() => exec('formatBlock', 'h3')} title="Heading 3">H3</button>
 
         <div class="toolbar-separator"></div>
 
-        <!-- Divider -->
         <button class="toolbar-btn" onClick=${() => exec('insertHTML', '<hr/>')} title="Horizontal rule">—</button>
 
-        <!-- Lists -->
         <button class="toolbar-btn" onClick=${() => togglePicker('bullet')} title="Custom bullet">• ▾</button>
         <button class="toolbar-btn" onClick=${() => exec('insertOrderedList')} title="Numbered list">1.</button>
 
         <div class="toolbar-separator"></div>
 
-        <!-- Color / Highlight / Emoji -->
         <button class="toolbar-btn" onClick=${() => togglePicker('color-text')} title="Text color" style=${{ color: '#ff8800' }}>A</button>
         <button class="toolbar-btn" onClick=${() => togglePicker('color-highlight')} title="Highlight">🖊</button>
         <button class="toolbar-btn" onClick=${() => togglePicker('emoji')} title="Emoji">😀</button>
 
         <div class="toolbar-separator"></div>
 
-        <!-- Make Action -->
         <button
           class="toolbar-btn"
           onClick=${makeAction}
@@ -125,7 +118,6 @@ export default function FormattingToolbar({ editorRef }) {
         >ACTION</button>
       </div>
 
-      <!-- Pickers -->
       ${openPicker === 'color-text' && html`
         <${ColorPicker} mode="text" onClose=${closePicker} />
       `}

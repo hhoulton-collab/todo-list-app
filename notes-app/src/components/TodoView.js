@@ -103,14 +103,12 @@ export function TodoView({ todos, dispatch }) {
   return html`
     <div style=${{ padding: '24px', maxWidth: '800px', margin: '0 auto' }}>
 
-      <!-- Stats bar -->
       <div style=${{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
         <span class="badge status-todo">To Do: ${countByStatus('todo')}</span>
         <span class="badge status-inprogress">In Progress: ${countByStatus('inprogress')}</span>
         <span class="badge status-done">Done: ${countByStatus('done')}</span>
       </div>
 
-      <!-- Add task form -->
       <form
         onSubmit=${handleAddTask}
         style=${{ display: 'flex', gap: '8px', marginBottom: '20px', flexWrap: 'wrap' }}
@@ -151,7 +149,6 @@ export function TodoView({ todos, dispatch }) {
         <button type="submit" class="btn btn-primary">Add Task</button>
       </form>
 
-      <!-- Filter bar -->
       <div style=${{ display: 'flex', gap: '8px', marginBottom: '20px', flexWrap: 'wrap', alignItems: 'center' }}>
         <span style=${{ color: 'var(--text-muted)', fontSize: '0.85rem', marginRight: '4px' }}>Status:</span>
         ${['all', 'todo', 'inprogress', 'done'].map((s) => html`
@@ -177,7 +174,6 @@ export function TodoView({ todos, dispatch }) {
         `)}
       </div>
 
-      <!-- Task list -->
       ${filtered.length === 0
         ? html`
           <div style=${{

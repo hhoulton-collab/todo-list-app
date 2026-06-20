@@ -72,7 +72,6 @@ export function CommandPalette({ onClose, dispatch, notes }) {
           overflow: 'hidden',
         }}
       >
-        <!-- Search input -->
         <div style=${{ padding: '16px', borderBottom: '1px solid var(--card-border)' }}>
           <input
             ref=${inputRef}
@@ -88,7 +87,6 @@ export function CommandPalette({ onClose, dispatch, notes }) {
           />
         </div>
 
-        <!-- Command list -->
         <div style=${{ maxHeight: '360px', overflowY: 'auto', padding: '8px' }}>
           ${filtered.length === 0 && html`
             <div style=${{ padding: '24px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
@@ -122,7 +120,6 @@ export function CommandPalette({ onClose, dispatch, notes }) {
           `)}
         </div>
 
-        <!-- Footer hint -->
         <div style=${{
           padding: '10px 16px', borderTop: '1px solid var(--card-border)',
           display: 'flex', gap: '16px', fontSize: '0.7rem', color: 'var(--text-muted)'

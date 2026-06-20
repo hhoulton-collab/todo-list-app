@@ -70,7 +70,6 @@ export default function SummaryModal({ isOpen, note, summaryText, isSummarizing,
           boxShadow: '0 24px 64px rgba(0,0,0,0.3)',
         }}
       >
-        <!-- Header -->
         <div style=${{ marginBottom: '20px' }}>
           <h2 style=${{ margin: '0 0 6px', fontSize: '1.25rem', color: 'var(--text)' }}>
             📝 Note Summary
@@ -82,7 +81,6 @@ export default function SummaryModal({ isOpen, note, summaryText, isSummarizing,
           `}
         </div>
 
-        <!-- Body -->
         <div style=${{ minHeight: '80px', marginBottom: '28px' }}>
           ${isSummarizing
             ? html`
@@ -101,7 +99,6 @@ export default function SummaryModal({ isOpen, note, summaryText, isSummarizing,
           }
         </div>
 
-        <!-- Footer -->
         <div style=${{ display: 'flex', justifyContent: 'flex-end' }}>
           <button class="btn btn-ghost" onClick=${handleClose}>
             Close

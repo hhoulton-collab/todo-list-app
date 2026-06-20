@@ -132,7 +132,6 @@ export default function NoteEditor({ note, isGeneratingTitle, dispatch, onSummar
 
   return html`
     <div style=${{ display: 'flex', flexDirection: 'column', height: '100%', padding: '24px 32px' }}>
-      <!-- Title row -->
       <div style=${{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
         <input
           class=${isGeneratingTitle ? 'note-editor-title shimmer' : 'note-editor-title'}
@@ -170,10 +169,8 @@ export default function NoteEditor({ note, isGeneratingTitle, dispatch, onSummar
         >✨ Summarise</button>
       </div>
 
-      <!-- Formatting toolbar -->
       <${FormattingToolbar} editorRef=${editorRef} />
 
-      <!-- Content editor -->
       <div
         ref=${editorRef}
         class="note-editor-body"
