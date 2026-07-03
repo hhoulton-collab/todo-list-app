@@ -76,6 +76,38 @@ function extractActionItems(text) {
     .filter(Boolean);
 }
 
+// Visually highlight ACTION: lines in the contenteditable without touching text content
+function applyActionHighlights(el) {
+  if (!el) return;
+  const lines = el.querySelectorAll(':scope > div');
+  lines.forEach(line => {
+    const isAction = line.textContent.trimStart().startsWith('ACTION:');
+    if (isAction) {
+      line.style.background = 'rgba(255,107,107,0.12)';
+      line.style.borderLeft = '3px solid #FF6B6B';
+      line.style.paddingLeft = '10px';
+      line.style.borderRadius = '4px';
+      line.style.marginBottom = '2px';
+    } else {
+      line.style.background = '';
+      line.style.borderLeft = '';
+      line.style.paddingLeft = '';
+      line.style.borderRadius = '';
+      line.style.marginBottom = '';
+    }
+  });
+  // Handle single-line text (no divs yet — wrap root text in a temp check)
+  if (lines.length === 0 && el.textContent.trimStart().startsWith('ACTION:')) {
+    el.style.borderLeft = '3px solid #FF6B6B';
+    el.style.paddingLeft = '10px';
+    el.style.background = 'rgba(255,107,107,0.08)';
+  } else if (lines.length === 0) {
+    el.style.borderLeft = '';
+    el.style.paddingLeft = '';
+    el.style.background = '';
+  }
+}
+
 export default function NoteEditor({ note, isGeneratingTitle, dispatch, onSummarise, onContentChange }) {
   ensureEditorStyles();
 
@@ -89,11 +121,15 @@ export default function NoteEditor({ note, isGeneratingTitle, dispatch, onSummar
     if (note && note.id !== lastNoteId.current) {
       editorRef.current.innerHTML = note.content || '';
       lastNoteId.current = note.id;
+      requestAnimationFrame(() => applyActionHighlights(editorRef.current));
     }
   }, [note]);
 
   const handleInput = useCallback(() => {
     if (!editorRef.current || !note) return;
+
+    // Immediate visual highlight (no debounce)
+    requestAnimationFrame(() => applyActionHighlights(editorRef.current));
 
     clearTimeout(debounceTimer.current);
     debounceTimer.current = setTimeout(() => {

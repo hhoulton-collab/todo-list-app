@@ -2,6 +2,11 @@ import { ACTIONS } from '../store.js';
 
 export { ACTIONS };
 
+const API_HEADERS = {
+  "Content-Type": "application/json",
+  "anthropic-dangerous-direct-browser-access": "true",
+};
+
 export async function generateTitle(noteId, content, dispatch) {
   if (content.trim().length < 20) return;
 
@@ -10,7 +15,7 @@ export async function generateTitle(noteId, content, dispatch) {
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: API_HEADERS,
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
         max_tokens: 50,
@@ -28,6 +33,7 @@ export async function generateTitle(noteId, content, dispatch) {
     dispatch({ type: ACTIONS.UPDATE_NOTE, payload: { id: noteId, title } });
     dispatch({ type: ACTIONS.SET_AI_LOADING, payload: { loading: false } });
   } catch (err) {
+    console.error('Title generation failed:', err);
     dispatch({ type: ACTIONS.SET_AI_LOADING, payload: { loading: false } });
   }
 }
@@ -38,7 +44,7 @@ export async function summariseNote(content, dispatch) {
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: API_HEADERS,
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
         max_tokens: 200,
@@ -53,6 +59,7 @@ export async function summariseNote(content, dispatch) {
     const data = await response.json();
     dispatch({ type: ACTIONS.SET_SUMMARY, payload: { text: data.content[0].text.trim() } });
   } catch (err) {
+    console.error('Summarise failed:', err);
     dispatch({ type: ACTIONS.SET_SUMMARY, payload: { text: 'Failed to generate summary. Please try again.' } });
   }
 }
